@@ -21,8 +21,8 @@ Madoiの機能を使って、チャットアプリケーションを作成して
 </head>
 <body>
 <form id="chatForm">
-    <input id="name" size="8" type="text" value="匿名">
-    <input id="message" size="30" type="text" placeholder="送信するメッセージ。enterで送信。">
+    <input name="name" size="8" type="text" value="匿名">
+    <input name="message" size="30" type="text" placeholder="送信するメッセージ。enterで送信。">
     <button type="submit">送信</button>
 </form>
 <div id="logDiv">
@@ -36,11 +36,11 @@ window.addEventListener("load", ()=>{
     const chatForm = document.getElementById("chatForm");
     const logDiv = document.getElementById("logDiv");
 
-    chatForm.addEventListener("submit", ()=>{
+    chatForm.addEventListener("submit", e=>{
         // フォームのsubmit時の処理
-        event.preventDefault();
-        const name = document.getElementById("name");
-        const message = document.getElementById('message');
+        e.preventDefault();
+        const name = chatForm.name;
+        const message = chatForm.message;
         // メッセージを送る。第一引数はメッセージタイプ、第二引数はメッセージの内容。
         m.send("chat", `${name.value}: ${message.value}`);
         message.value = "";
